@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle</title>
+  <link href="style.css" rel="stylesheet">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="oreContainer">
+    <p class="oreText">Ore:</p>
+    <div id="oreCount" class="oreCount"></div>
+  </div>
+  <div class="goldContainer">
+    <p class="goldText">Gold:</p>
+    <div id="goldCount" class="oreCount"></div>
+  </div>
+  <div class="container" id="buttonContainer">
+    <button class="mine" onclick="addOre();">Mine</button>
+    <button class="sell" onclick="sellOre();">Sell</button>
+    <button class="shop" onclick="shop();">Shop</button>
+  </div>
+  <div id="myBar1">
+    <div id="myProgress">
+      <div id="myBar"></div>
+    </div>
+  </div>
+  <p class="oreIdle" id="oreIdleID">+1 Ore</p>
+  <p class="oreManual" id="oreManualID">+1 Ore</p>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="dynamics.js"></script>
+</body>
+</html>

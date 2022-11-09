@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Number Sorter"
+		}
+	],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Idle"
+  }
+}
