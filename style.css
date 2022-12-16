@@ -230,6 +230,10 @@ body {
   letter-spacing: 5px;
   touch-action: manipulation;
 }
+.autoMine,
+.goldMult {
+  height: fit-content;
+}
 @media only screen and (max-width: 600px) {
   .autoMine,
   .goldMult,
@@ -265,6 +269,10 @@ animation: fadeIn;
   border-radius: 2px;
   margin: auto 0px auto 0px;
   transition: all .1s ease;
+}
+.autoMine:hover,
+.goldMult:hover {
+  height: fit-content;
 }
 @media only screen and (max-width: 600px) {
   .autoMine:hover,
