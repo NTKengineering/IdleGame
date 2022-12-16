@@ -21,6 +21,13 @@ body {
   justify-content: space-around;
   box-shadow: 5px 10px rgb(185, 203, 115);
 }
+@media only screen and (max-width: 600px) {
+  .container {
+    top: 60vh;
+    width: 90vw;
+  }
+}
+
 .containerAnimate {
   animation-duration: .4s;
   animation-timing-function: ease;
@@ -55,6 +62,11 @@ body {
   display: inline-flex;
 
   box-shadow: 5px 10px rgb(185, 203, 115);
+}
+@media only screen and (max-width: 600px) {
+  .oreContainer {
+    width: fit-content;
+  }
 }
 
 .oreText {
@@ -96,7 +108,19 @@ body {
   margin: auto 0px auto 0px;
   letter-spacing: 5px;
   opacity: 1;
+  touch-action: manipulation;
 }
+@media only screen and (max-width: 600px) {
+  .mine,
+  .sell,
+  .shop {
+    width: fit-content;
+    height: 6vh;
+    pointer-events: visible;
+    -webkit-tap-highlight-color:rgb(122, 134, 75);
+  }
+}
+
 .buttonsAnimate {
   animation-duration: .2s;
   animation-timing-function: ease;
@@ -123,6 +147,17 @@ body {
   margin: auto 0px auto 0px;
   transition: all .1s ease;
 }
+@media only screen and (max-width: 600px) {
+  .mine:hover,
+  .sell:hover,
+  .shop:hover {
+    color: rgb(106, 116, 66);
+    background-color: rgb(185, 203, 115);
+    width: fit-content;
+    height: 6vh;
+    pointer-events: visible;
+  }
+}
 
 .mine:active,
 .sell:active,
@@ -135,7 +170,16 @@ body {
   margin: auto 0px auto 0px;
   transition: all .1s ease;
 }
-
+@media only screen and (max-width: 600px) {
+  .mine:active,
+  .sell:active,
+  .shop:active {
+    width: fit-content;
+    height: 6vh;
+    pointer-events: visible;
+    background-color: rgb(122, 134, 75);
+  }
+}
 .goldContainer {
   height: 5vh;
   width: 10vw;
@@ -149,6 +193,14 @@ body {
   display: inline-flex;
 
   box-shadow: 5px 10px rgb(185, 203, 115);
+}
+@media only screen and (max-width: 600px) {
+  .goldContainer {
+    width: fit-content;
+    left: 20vw;
+    top: 10vh;
+    margin: none;
+  }
 }
 .goldText {
   position: relative;
@@ -176,6 +228,17 @@ body {
   border-radius: 2px;
   margin: auto 0px auto 0px;
   letter-spacing: 5px;
+  touch-action: manipulation;
+}
+@media only screen and (max-width: 600px) {
+  .autoMine,
+  .goldMult,
+  .back {
+    width: fit-content;
+    height: 6vh;
+    pointer-events: visible;
+    -webkit-tap-highlight-color:rgb(122, 134, 75);
+  }
 }
 .buttonsAnimateIn {
 animation-duration: .4s;
@@ -203,6 +266,17 @@ animation: fadeIn;
   margin: auto 0px auto 0px;
   transition: all .1s ease;
 }
+@media only screen and (max-width: 600px) {
+  .autoMine:hover,
+  .goldMult:hover,
+  .back:hover {
+    background-color: rgb(185, 203, 115);
+    color: rgb(106, 116, 66);
+    width: fit-content;
+    height: 6vh;
+    pointer-events: visible;
+  }
+}
 
 .autoMine:active,
 .goldMult:active,
@@ -214,6 +288,15 @@ animation: fadeIn;
   border-radius: 2px;
   margin: auto 0px auto 0px;
   transition: all .1s ease;
+}
+@media only screen and (max-width: 600px) {
+  .autoMine:active,
+  .goldMult:active,
+  .back:active {
+    width: fit-content;
+    height: 6vh;
+    pointer-events: visible;
+  }
 }
 
 .autoMine {

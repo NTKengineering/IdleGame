@@ -1,26 +1,52 @@
+let oreMult = 1 
+let oreFinalMult = 1 
+let multLevel = 1
+let multCost = 50
 let ore = 0
-let gold = 0
-let autoMineLvl = 1
+let gold = 1
+let autoMineLvl = 0
 let autoMineSpeed = 900
 let autoMineCost = 0
 
 let calculateCost = () => {
   let totalCost= autoMineLvl * 50 
-  console.log(`${totalCost} cost`)
+  // console.log(`${totalCost} cost`)
   autoMineCost = totalCost
 }
+let calculateMultCost = () => {
+  let totalCost= multLevel * 50 
+  console.log(`${totalCost} cost`)
+  multCost = totalCost
+}
+calculateMultCost()
 
 let speedAdjust = () => {
  autoMineSpeed-=100
  move()
 }
 
+let updateMult = () => {
+  if (multLevel <= 2){
+    document.querySelector("#oreManualID").innerHTML = '+' +1 * oreMult + ' ore'
+    document.querySelector("#oreIdleID").innerHTML = '+' +1 * oreMult + ' ore'
+  } else{
+    document.querySelector("#oreManualID").innerHTML = '+' +
+    oreFinalMult + ' ore'
+    document.querySelector("#oreIdleID").innerHTML = '+' + 
+    oreFinalMult + ' ore'
+  }
+}
 
 let addOre = () => {
-  ore++
-
+  if (multLevel <= 2){
+    ore+=1 * oreMult
+  } else{
+    ore += oreFinalMult
+  }
+  console.log(`oreMult ${oreMult}// multLevel ${multLevel}`)
+  console.log(`oreFinalMult ${oreFinalMult}`)
+  updateMult()
 // +1 Ore Animation
-
   if ($(".oreManual").classList = $(".oreManualAnimate")) {
     $(".oreManual").removeClass('oreManualAnimate')
   } 
@@ -67,12 +93,12 @@ let shop = () => {
     if (autoMineLvl == 1){
   document.getElementById('buttonContainer').innerHTML = 
   `<button class="autoMine" onclick="autoMine();">Auto<br>Mine<br>25</button>
-  <button class="goldMult" onclick="sellOre();">Gold<br>Mult</button>
+  <button class="goldMult" onclick="OreMult();">Gold<br>Mult<br>${multCost}</button>
   <button class="back" onclick="back();">Back</button>`
   } else {
     document.getElementById('buttonContainer').innerHTML = 
     `<button class="autoMine" onclick="autoMine();">Auto<br>Mine<br>${autoMineCost}</button>
-    <button class="goldMult" onclick="sellOre();">Gold<br>Mult</button>
+    <button class="goldMult" onclick="OreMult();">Gold<br>Mult<br>${multCost}</button>
     <button class="back" onclick="back();">Back</button>`
   }
   }, 200);
@@ -105,7 +131,11 @@ function move() {
     function frame() {
       if (width >= 100) {
         clearInterval(id);
-        ore++
+        if (multLevel <= 2){
+          ore+=1 * oreMult
+        } else{
+          ore += oreFinalMult
+        }
         refreshOre()
         i = 0;
         move()
@@ -129,7 +159,7 @@ function move() {
       if (width >= 40 && width <= 90){
         dynamics.stop(document.getElementById('oreIdleID'))
         document.getElementById('oreIdleID').style.opacity = "0"
-        return console.log(`yes`)
+        // return console.log(`yes`)
       
       }
 
@@ -143,7 +173,7 @@ let autoMine = () => {
 
 // 1st Purchase
   if (gold >= 25 && autoMineLvl == 1) {
-    console.log(`purchased AutoMine`)
+    // console.log(`purchased AutoMine`)
     gold = gold - 25
     refreshGold()
     autoMineLvl++
@@ -151,17 +181,55 @@ let autoMine = () => {
   }
 // Next purchases
   if (gold > autoMineCost || gold == autoMineCost) {
-    console.log(`purchased NewAutoMine`)
+    // console.log(`purchased NewAutoMine`)
     gold = gold - autoMineCost
     refreshGold()
     autoMineLvl++
     speedAdjust()
     move()
-    console.log(`${autoMineSpeed} Speed`)
+    // console.log(`${autoMineSpeed} Speed`)
   }
   calculateCost()
   document.getElementById('buttonContainer').innerHTML = 
   `<button class="autoMine" onclick="autoMine();">Auto<br>Mine<br>${autoMineCost}</button>
-  <button class="goldMult" onclick="sellOre();">Gold<br>Mult</button>
+  <button class="goldMult" onclick="OreMult();">Gold<br>Mult<br>${multCost}</button>
   <button class="back" onclick="back();">Back</button>`
+}
+
+let OreMult = () => { 
+  
+  // 1st Purchase
+  if (gold >= 50 && multLevel == 1) {
+    // alert('mult')
+    console.log(`purchased mult`)
+    gold = gold - 50
+    refreshGold()
+    multLevel=2
+    oreMult = oreMult+1
+    // move()
+    updateMult()
+    calculateMultCost()
+    document.getElementById('buttonContainer').innerHTML = 
+    `<button class="autoMine" onclick="autoMine();">Auto<br>Mine<br>${autoMineCost}</button>
+    <button class="goldMult" onclick="OreMult();">Gold<br>Mult<br>${multCost}</button>
+    <button class="back" onclick="back();">Back</button>`
+  }
+  // Next purchases
+  if (gold > multCost && multLevel > 1 || gold == multCost && multLevel > 1) {
+    // alert('mult')
+    console.log(`purchased NewMult`)
+    gold = gold - multCost
+    refreshGold()
+    multLevel+=1
+    oreFinalMult = (multLevel*2)
+    // move()
+    console.log(`${multLevel} multLevel`)
+    console.log(`${oreFinalMult} oreFinalMult`)
+    calculateMultCost()
+    updateMult()
+    document.getElementById('buttonContainer').innerHTML = 
+    `<button class="autoMine" onclick="autoMine();">Auto<br>Mine<br>${autoMineCost}</button>
+    <button class="goldMult" onclick="OreMult();">Gold<br>Mult<br>${multCost}</button>
+    <button class="back" onclick="back();">Back</button>`
+  }
 }
